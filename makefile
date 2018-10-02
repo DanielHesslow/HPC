@@ -1,12 +1,12 @@
-OBJS   = main.o
+OBJS   = newton.o
 CC     = gcc
-CFLAGS  = -O2 -Wall -lm -march=native
+CFLAGS  = -pthread -O3 -Wall -lm -march=native
 .PHONY : clean
 
-main : $(OBJS)
+newton : $(OBJS)
 	$(CC) -o $@ $(CFLAGS) $(OBJS)
 
-main.o : main.c
+newton.o : newton.c
 
 clean:
-	rm -f $(OBJS) main
+	rm -f $(OBJS) newton
