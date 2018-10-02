@@ -176,15 +176,15 @@ void *process(void *data)
 
 				if(cpx_distance_sq(x, correct_roots[j]) < 1e-6){
 					root[px] = j+1;
-					num_its[px] = its+1;
+					num_its[px] = its;
 					done = 1;
 					break;
 				}
 			}
 			if(done) break;
 			if(fabs(x.re) > 1e10 || fabs(x.im) > 1e10 || cpx_magnitude_sq(x) < 1e-6 ){
-				root[px] = degree+1;
-				num_its[px] = its+1;
+				root[px] = 0;
+				num_its[px] = 1000;
 				break;
 			}
 			x = newton_iteration(degree,x);
@@ -245,7 +245,14 @@ int main(int argc, char *argv[])
     	if(result_code) printf("error joining");
   	}
 
-	char *cols[] = {"0 0 0 ", "255 0 0 ", "0 255 0 ", "0 0 255 ","255 0 255 ","0 255 255 ","255 255 0 ",  "255 255 255 ", "200 100 150 ", "200 150 100 ", "150 200 100 "};
+	char *cols[] = {"0 0 0 ", "230 25 75 ", "60 180 75 ", "255 225 25 ", "67 99 216 ","70 240 240 ","240 50 230 ","188 246 12 ", "250 190 190 ", "188 246 12 ", "154 99 36 ", "128 0 0 " "170 255 195 ", "128 128 0 "};
+
+/*
+'#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0', '#f032e6', '#bcf60c', '#fabebe', '#008080', '#e6beff', '#9a6324', '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075', '#808080', '#ffffff', '#000000'
+*/
+
+
+
 
 	char buffer[100];
 	sprintf(buffer, "newton_attractors_x%d.ppm",degree);
@@ -273,14 +280,6 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
-
-
-
-
-
-
-
-
 
 
 
